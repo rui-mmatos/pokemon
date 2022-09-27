@@ -3,4 +3,26 @@
     <color name="colorPrimary">#43a047</color>
     <color name="colorPrimaryDark">#00701a</color>
     <color name="colorAccent">#76d275</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+
+    <drawable name="type_normal">#A8A878</drawable>
+    <drawable name="type_fire">#F08030</drawable>
+    <drawable name="type_fighting">#C03028</drawable>
+    <drawable name="type_water">#6890F0</drawable>
+    <drawable name="type_flying">#A890F0</drawable>
+    <drawable name="type_grass">#78C850</drawable>
+    <drawable name="type_poison">#A040A0</drawable>
+    <drawable name="type_eletric">#F8D030</drawable>
+    <drawable name="type_ground">#E0C068</drawable>
+    <drawable name="type_psychic">#F85888</drawable>
+    <drawable name="type_rock">#B8A038</drawable>
+    <drawable name="type_ice">#98D8D8</drawable>
+    <drawable name="type_bug">#A8B820</drawable>
+    <drawable name="type_dragon">#7038F8</drawable>
+    <drawable name="type_ghost">#705898</drawable>
+    <drawable name="type_dark">#705848</drawable>
+    <drawable name="type_steel">#B8B8D0</drawable>
+    <drawable name="type_fairy">#EE99AC</drawable>
+    <drawable name="type_unknown">#68A090</drawable>
 </resources>

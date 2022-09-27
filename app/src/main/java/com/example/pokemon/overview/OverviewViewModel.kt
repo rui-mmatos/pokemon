@@ -13,6 +13,10 @@ import kotlinx.coroutines.launch
 
 class OverviewViewModel : ViewModel() {
 
+    private val _nagivateToSelectedPokemon = MutableLiveData<Pokemon>()
+    val navigateToSelectedPokemon: LiveData<Pokemon>
+        get() = _nagivateToSelectedPokemon
+
     private val _showProgressBar = MutableLiveData<Boolean>()
     val showProgressBar: LiveData<Boolean>
         get() = _showProgressBar
@@ -24,14 +28,17 @@ class OverviewViewModel : ViewModel() {
     private val viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
+    private var _offset: Int = 0
+    private var _limit: Int = 20
+
     init {
         _showProgressBar.value = true
-        getPokemons()
+        getPokemons(_offset, _limit)
     }
 
-    private fun getPokemons() {
+    fun getPokemons(offset: Int, limit: Int) {
         coroutineScope.launch {
-            var getPokemons = PokemonApi.retrofitService.getPokemons(0, 1154)
+            var getPokemons = PokemonApi.retrofitService.getPokemons(offset, limit)
             try {
                 var result = getPokemons.await()
                 _showProgressBar.value = false
@@ -41,6 +48,14 @@ class OverviewViewModel : ViewModel() {
                 Log.i("OverViewModel", t.message.toString())
             }
         }
+    }
+
+    fun displayPokemonDetails(pokemon: Pokemon) {
+        _nagivateToSelectedPokemon.value = pokemon
+    }
+
+    fun displayPokemonDetailsCompleted() {
+        _nagivateToSelectedPokemon.value = null
     }
 
     override fun onCleared() {

@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.example.pokemon.detail.DetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".detail.DetailFragment">
+
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.showProgressBar ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="h,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{viewModel.showProgressBar ? View.INVISIBLE : View.VISIBLE}">
+
+            <!-- <ImageView
+                 android:id="@+id/detail_cardView"
+                 android:layout_width="0dp"
+                 android:layout_height="0dp"
+                 app:cardElevation="0dp"
+                 android:cardBackgroundColor="@{viewModel.pokemon.imgUrl}"
+                 app:layout_constraintBottom_toTopOf="@+id/guideline"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toTopOf="parent" />-->
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:layout_constraintBottom_toTopOf="@+id/guideline2"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detail_weightTv"
+                app:typeBackground="@{viewModel.types[0].type.name}">
+
+                <TextView
+                    android:id="@+id/detail_type1"
+                    style="@style/textview_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@{viewModel.types[0].type.name}"
+                    android:textColor="@color/white"
+                    tools:text="grass" />
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:id="@+id/detail_weightImage"
+                android:layout_width="30dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_weight"
+                app:layout_constraintBottom_toBottomOf="@+id/detail_weightTv"
+                app:layout_constraintDimensionRatio="h,1:1"
+                app:layout_constraintEnd_toStartOf="@+id/detail_weightTv"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/detail_weightTv" />
+
+            <TextView
+                android:id="@+id/detail_weightTv"
+                style="@style/textview_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{@string/detail_weight(viewModel.weight)}"
+                app:layout_constraintBottom_toTopOf="@+id/cardView"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/detail_weightImage"
+                app:layout_constraintTop_toBottomOf="@+id/detail_idTv"
+                tools:text="50kg" />
+
+            <TextView
+                android:id="@+id/detail_heightTv"
+                style="@style/textview_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:text="@{@string/detail_height(viewModel.height)}"
+                app:layout_constraintBottom_toBottomOf="@+id/detail_heightImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/detail_heightImage"
+                app:layout_constraintTop_toTopOf="@+id/detail_heightImage"
+                tools:text="11 dm" />
+
+            <TextView
+                android:id="@+id/detail_nameTv"
+                style="@style/textview_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{viewModel.name}"
+                app:layout_constraintBaseline_toBaselineOf="@+id/detail_idTv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/detail_idTv"
+                tools:text="Beedril" />
+
+            <TextView
+                android:id="@+id/detail_basestats"
+                style="@style/textview_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/base_stats"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+            <ImageView
+                android:id="@+id/detail_heightImage"
+                android:layout_width="30dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="6dp"
+                android:src="@drawable/ic_height"
+                app:layout_constraintBottom_toTopOf="@+id/cardView2"
+                app:layout_constraintDimensionRatio="h,1:1"
+                app:layout_constraintEnd_toStartOf="@+id/detail_heightTv"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="@+id/guideline3"
+                app:layout_constraintTop_toBottomOf="@+id/detail_nameTv" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <ImageView
+                android:id="@+id/detail_pokemonImage"
+                android:layout_width="150dp"
+                android:layout_height="0dp"
+                android:elevation="50dp"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{viewModel.pokemon.imgUrl}"
+                app:layout_constraintBottom_toTopOf="@+id/guideline"
+                app:layout_constraintDimensionRatio="h,1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/guideline"
+                tools:src="@tools:sample/avatars" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:layout_constraintBottom_toTopOf="@+id/guideline2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/guideline3"
+                app:layout_constraintTop_toBottomOf="@+id/detail_heightImage"
+                app:typeBackground="@{viewModel.types[1].type.name}">
+
+                <TextView
+                    android:id="@+id/detail_type2"
+                    style="@style/textview_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@{viewModel.types[1].type.name}"
+                    android:textColor="@color/white"
+                    tools:text="fire" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/detail_idTv"
+                style="@style/textview_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@{@string/detail_id(viewModel.pokemon.idFromUrl)}"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/detail_nameTv"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detail_pokemonImage"
+                tools:text="#1115" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.50851583" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.15" />
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detail_basestats">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/hp_linear"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_margin="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:layout_width="60dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="5dp"
+                            android:gravity="start|center"
+                            android:text="HP"
+                            style="@style/textview_style"/>
+
+                        <com.skydoves.progressview.ProgressView
+                            android:id="@+id/hpProgress"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:progressView_autoAnimate="true"
+                            app:progressView_colorBackground="@android:color/darker_gray"
+                            app:progressView_colorProgress="#FA0E07"
+                            app:progressView_labelColorInner="@color/black"
+                            app:progressView_labelColorOuter="@color/white"
+                            app:setLabel="@{String.valueOf(viewModel.stats[0].base_stat)}"
+                            app:setProgress="@{viewModel.stats[0].base_stat}"
+                            app:progressView_labelSize="15sp"
+                            app:progressView_labelSpace="10dp"
+                            app:progressView_max="300"
+                            app:progressView_radius="20dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/attack_linear"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_margin="10dp"
+                        android:elevation="15dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/hp_linear">
+
+                        <TextView
+                            android:layout_width="60dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="5dp"
+                            android:gravity="start|center"
+                            android:text="ATK"
+                            style="@style/textview_style"/>
+
+                        <com.skydoves.progressview.ProgressView
+                            android:id="@+id/attackProgress"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:progressView_autoAnimate="true"
+                            app:progressView_colorBackground="@android:color/darker_gray"
+                            app:progressView_colorProgress="#FFFF00"
+                            app:progressView_labelColorInner="@color/black"
+                            app:progressView_labelColorOuter="@color/white"
+                            app:progressView_labelSize="15sp"
+                            app:progressView_labelSpace="10dp"
+                            app:progressView_max="200"
+                            app:setLabel="@{String.valueOf(viewModel.stats[1].base_stat)}"
+                            app:setProgress="@{viewModel.stats[1].base_stat}"
+                            app:progressView_radius="20dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/def_linear"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_margin="10dp"
+                        android:elevation="15dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/attack_linear">
+
+                        <TextView
+                            android:layout_width="60dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="5dp"
+                            android:gravity="start|center"
+                            android:text="DEF"
+                            style="@style/textview_style"/>
+
+                        <com.skydoves.progressview.ProgressView
+                            android:id="@+id/defProgress"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:progressView_autoAnimate="true"
+                            app:progressView_colorBackground="@android:color/darker_gray"
+                            app:progressView_colorProgress="@android:color/holo_blue_light"
+                            app:progressView_labelColorInner="@color/black"
+                            app:progressView_labelColorOuter="@color/white"
+                            app:progressView_labelSize="15sp"
+                            app:progressView_labelSpace="10dp"
+                            app:progressView_max="250"
+                            app:setLabel="@{String.valueOf(viewModel.stats[2].base_stat)}"
+                            app:setProgress="@{viewModel.stats[2].base_stat}"
+                            app:progressView_radius="20dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/spattack_linear"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_margin="10dp"
+                        android:elevation="15dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/def_linear">
+
+                        <TextView
+                            android:layout_width="60dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="5dp"
+                            android:gravity="start|center"
+                            android:text="SP ATK"
+                            style="@style/textview_style"/>
+
+                        <com.skydoves.progressview.ProgressView
+                            android:id="@+id/spAtkProgress"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:progressView_autoAnimate="true"
+                            app:progressView_colorBackground="@android:color/darker_gray"
+                            app:progressView_colorProgress="#AB63FD"
+                            app:progressView_labelColorInner="@color/black"
+                            app:progressView_labelColorOuter="@color/white"
+                            app:progressView_labelSize="15sp"
+                            app:progressView_labelSpace="10dp"
+                            app:progressView_max="250"
+                            app:setLabel="@{String.valueOf(viewModel.stats[3].base_stat)}"
+                            app:setProgress="@{viewModel.stats[3].base_stat}"
+                            app:progressView_radius="20dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/spdef_linear"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_margin="10dp"
+                        android:elevation="15dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/spattack_linear">
+
+                        <TextView
+                            android:layout_width="60dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="5dp"
+                            android:gravity="start|center"
+                            android:text="SP DEF"
+                            style="@style/textview_style"/>
+
+                        <com.skydoves.progressview.ProgressView
+                            android:id="@+id/spDefProgress"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:progressView_autoAnimate="true"
+                            app:progressView_colorBackground="@android:color/darker_gray"
+                            app:progressView_colorProgress="#3F958F"
+                            app:progressView_labelColorInner="@color/black"
+                            app:progressView_labelColorOuter="@color/white"
+                            app:progressView_labelSize="15sp"
+                            app:progressView_labelSpace="10dp"
+                            app:progressView_max="250"
+                            app:setLabel="@{String.valueOf(viewModel.stats[4].base_stat)}"
+                            app:setProgress="@{viewModel.stats[4].base_stat}"
+                            app:progressView_radius="20dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/spd_linear"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_margin="10dp"
+                        android:elevation="15dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/spdef_linear">
+
+                        <TextView
+                            android:layout_width="60dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="5dp"
+                            android:gravity="start|center"
+                            android:text="SPD"
+                            style="@style/textview_style"/>
+
+                        <com.skydoves.progressview.ProgressView
+                            android:id="@+id/speedProgress"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:progressView_autoAnimate="true"
+                            app:progressView_colorBackground="@android:color/darker_gray"
+                            app:progressView_colorProgress="#23B70A"
+                            app:progressView_labelColorInner="@color/black"
+                            app:progressView_labelColorOuter="@color/white"
+                            app:progressView_labelSize="15sp"
+                            app:progressView_labelSpace="10dp"
+                            app:progressView_max="250"
+                            app:setLabel="@{String.valueOf(viewModel.stats[5].base_stat)}"
+                            app:setProgress="@{viewModel.stats[5].base_stat}"
+                            app:progressView_radius="20dp" />
+
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.core.widget.NestedScrollView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

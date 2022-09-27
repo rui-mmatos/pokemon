@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
 
     <!-- Base application theme. -->
-    <style name="Theme.Pokemon" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Theme.Pokemon" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -11,6 +11,11 @@
 
     <style name="button_style" parent="Theme.Pokemon">
         <item name="android:background">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="textview_style" parent="Theme.Pokemon">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/text_size</item>
     </style>
 
 </resources>

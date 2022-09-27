@@ -12,11 +12,12 @@ data class PokemonList(
 data class Pokemon(
     val name: String,
     val url: String
-): Parcelable{
+) : Parcelable {
     val imgUrl: String
-        get()= "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${getIdFromUrl()}.png"
-            fun getIdFromUrl(): String{
-                val urlParts = url.split("/")
-                return urlParts[urlParts.lastIndex-1]
-            }
+        get() = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${getIdFromUrl()}.png"
+
+    fun getIdFromUrl(): String {
+        val urlParts = url.split("/")
+        return urlParts[urlParts.lastIndex - 1]
+    }
 }
