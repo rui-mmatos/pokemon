@@ -32,6 +32,7 @@
 
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/nested_scrollview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fillViewport="true"
@@ -40,7 +41,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:pageBackgroundColor="@{viewModel.pokemon.imgUrl}">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -172,7 +174,6 @@
                     android:id="@+id/detail_pokemonImage"
                     android:layout_width="150dp"
                     android:layout_height="0dp"
-                    android:elevation="50dp"
                     android:scaleType="centerCrop"
                     app:imageUrl="@{viewModel.pokemon.imgUrl}"
                     app:layout_constraintBottom_toTopOf="@+id/guideline"
@@ -232,7 +233,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    app:layout_constraintGuide_percent="0.15" />
+                    app:layout_constraintGuide_percent="0.10" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -253,10 +254,9 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
-                            android:layout_width="30dp"
+                            android:layout_width="65dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="start|center"
-                            android:layout_marginEnd="35dp"
                             android:src="@drawable/heart_icon" />
 
                         <com.skydoves.progressview.ProgressView
@@ -288,10 +288,9 @@
                         app:layout_constraintTop_toBottomOf="@+id/hp_linear">
 
                         <ImageView
-                            android:layout_width="30dp"
+                            android:layout_width="65dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="start|center"
-                            android:layout_marginEnd="35dp"
                             android:src="@drawable/swords_icon" />
 
                         <com.skydoves.progressview.ProgressView
@@ -324,10 +323,9 @@
                         app:layout_constraintTop_toBottomOf="@+id/attack_linear">
 
                         <ImageView
-                            android:layout_width="30dp"
+                            android:layout_width="65dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="start|center"
-                            android:layout_marginEnd="35dp"
                             android:src="@drawable/shield_icon" />
 
                         <com.skydoves.progressview.ProgressView
@@ -360,16 +358,16 @@
                         app:layout_constraintTop_toBottomOf="@+id/def_linear">
 
                         <ImageView
-                            android:layout_width="15dp"
+                            android:layout_width="20dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="start|center"
-                            android:src="@drawable/special_stat_icon" />
+                            android:src="@drawable/special_stat_icon"
+                            android:layout_marginStart="5dp"/>
 
                         <ImageView
-                            android:layout_width="30dp"
+                            android:layout_width="40dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="start|center"
-                            android:layout_marginEnd="20dp"
                             android:src="@drawable/swords_icon" />
 
                         <com.skydoves.progressview.ProgressView
@@ -402,16 +400,16 @@
                         app:layout_constraintTop_toBottomOf="@+id/spattack_linear">
 
                         <ImageView
-                            android:layout_width="15dp"
+                            android:layout_width="20dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="start|center"
-                            android:src="@drawable/special_stat_icon" />
+                            android:src="@drawable/special_stat_icon"
+                            android:layout_marginStart="5dp"/>
 
                         <ImageView
-                            android:layout_width="30dp"
+                            android:layout_width="40dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="start|center"
-                            android:layout_marginEnd="20dp"
                             android:src="@drawable/shield_icon" />
 
                         <com.skydoves.progressview.ProgressView
@@ -444,10 +442,9 @@
                         app:layout_constraintTop_toBottomOf="@+id/spdef_linear">
 
                         <ImageView
-                            android:layout_width="30dp"
+                            android:layout_width="65dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="start|center"
-                            android:layout_marginEnd="35dp"
                             android:src="@drawable/speed_icon" />
 
                         <com.skydoves.progressview.ProgressView

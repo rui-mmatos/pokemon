@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.ImageDecoder
 import android.graphics.drawable.Drawable
+import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.provider.MediaStore
 import android.util.Log
@@ -17,6 +18,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.net.toUri
+import androidx.core.widget.NestedScrollView
 import androidx.databinding.BindingAdapter
 import androidx.palette.graphics.Palette
 import androidx.recyclerview.widget.RecyclerView
@@ -54,27 +56,28 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
     }
 }
 
-/*@BindingAdapter("android:cardBackgroundColor")
-fun bindBackgroundColor(imgView: ImageView, imgUrl: String?) {
+@BindingAdapter("app:pageBackgroundColor")
+fun pageBackgroundColor(scrollView: NestedScrollView, imgUrl: String?) {
     imgUrl?.let {
         val imgUri = it.toUri().buildUpon().scheme("https").build()
-        Glide.with(imgView.context).asBitmap().load(imgUri).into(object: CustomTarget<Bitmap>(){
+        Glide.with(scrollView.context).asBitmap().load(imgUri).into(object: CustomTarget<Bitmap>(){
             override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                 Palette.from(resource).generate() { palette ->
                     palette?.let { palette ->
                         val intColor = palette.lightVibrantSwatch?.rgb?:0
-                        imgView.setBackgroundColor(intColor)
+                        var gd: GradientDrawable = GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, intArrayOf(intColor, Color.rgb(255,255,255)))
+                        scrollView.background = gd
                     }
                 }
             }
 
             override fun onLoadCleared(placeholder: Drawable?) {
-                imgView.setBackgroundColor(Color.WHITE)
+                scrollView.setBackgroundColor(Color.WHITE)
             }
 
         })
     }
-}*/
+}
 
 
 @BindingAdapter("app:typeBackground")
