@@ -33,4 +33,5 @@
     <color name="stat_spdef">#A7DC8E</color>
     <color name="stat_spd">#FB92B1</color>
     <color name="stat_special">#F6C800</color>
+    <color name="pogressView_background">#D2D3D5</color>
 </resources>

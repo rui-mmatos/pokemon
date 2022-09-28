@@ -141,13 +141,13 @@
                 android:layout_height="0dp"
                 android:layout_marginEnd="6dp"
                 android:src="@drawable/ic_height"
-                app:layout_constraintBottom_toTopOf="@+id/cardView2"
+                app:layout_constraintBottom_toBottomOf="@+id/detail_weightImage"
                 app:layout_constraintDimensionRatio="h,1:1"
                 app:layout_constraintEnd_toStartOf="@+id/detail_heightTv"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="@+id/guideline3"
-                app:layout_constraintTop_toBottomOf="@+id/detail_nameTv" />
+                app:layout_constraintTop_toTopOf="@+id/detail_weightImage" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline2"
@@ -175,11 +175,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="12dp"
-                app:layout_constraintBottom_toTopOf="@+id/guideline2"
+                app:layout_constraintBottom_toBottomOf="@+id/cardView"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/guideline3"
-                app:layout_constraintTop_toBottomOf="@+id/detail_heightImage"
+                app:layout_constraintTop_toTopOf="@+id/cardView"
                 app:typeBackground="@{viewModel.types[1].type.name}">
 
                 <TextView
@@ -190,7 +189,7 @@
                     android:padding="10dp"
                     android:text="@{viewModel.types[1].type.name}"
                     android:textColor="@color/white"
-                    tools:text="fire" />
+                    tools:text="grass" />
             </androidx.cardview.widget.CardView>
 
             <TextView
@@ -246,13 +245,12 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
-                        <TextView
-                            android:layout_width="60dp"
+                        <ImageView
+                            android:layout_width="30dp"
                             android:layout_height="match_parent"
-                            android:layout_marginEnd="5dp"
-                            android:gravity="start|center"
-                            android:text="HP"
-                            style="@style/textview_style"/>
+                            android:layout_gravity="start|center"
+                            android:layout_marginEnd="35dp"
+                            android:src="@drawable/heart_icon" />
 
                         <com.skydoves.progressview.ProgressView
                             android:id="@+id/hpProgress"
@@ -260,16 +258,16 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             app:progressView_autoAnimate="true"
-                            app:progressView_colorBackground="@android:color/darker_gray"
+                            app:progressView_colorBackground="@color/pogressView_background"
                             app:progressView_colorProgress="@color/stat_hp"
                             app:progressView_labelColorInner="@color/black"
                             app:progressView_labelColorOuter="@color/white"
-                            app:setLabel="@{String.valueOf(viewModel.stats[0].base_stat)}"
-                            app:setProgress="@{viewModel.stats[0].base_stat}"
                             app:progressView_labelSize="15sp"
                             app:progressView_labelSpace="10dp"
                             app:progressView_max="300"
-                            app:progressView_radius="20dp" />
+                            app:progressView_radius="20dp"
+                            app:setLabel="@{String.valueOf(viewModel.stats[0].base_stat)}"
+                            app:setProgress="@{viewModel.stats[0].base_stat}" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -282,13 +280,12 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/hp_linear">
 
-                        <TextView
-                            android:layout_width="60dp"
+                        <ImageView
+                            android:layout_width="30dp"
                             android:layout_height="match_parent"
-                            android:layout_marginEnd="5dp"
-                            android:gravity="start|center"
-                            android:text="ATK"
-                            style="@style/textview_style"/>
+                            android:layout_gravity="start|center"
+                            android:layout_marginEnd="35dp"
+                            android:src="@drawable/swords_icon" />
 
                         <com.skydoves.progressview.ProgressView
                             android:id="@+id/attackProgress"
@@ -296,16 +293,16 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             app:progressView_autoAnimate="true"
-                            app:progressView_colorBackground="@android:color/darker_gray"
+                            app:progressView_colorBackground="@color/pogressView_background"
                             app:progressView_colorProgress="@color/stat_atk"
                             app:progressView_labelColorInner="@color/black"
                             app:progressView_labelColorOuter="@color/white"
                             app:progressView_labelSize="15sp"
                             app:progressView_labelSpace="10dp"
                             app:progressView_max="200"
+                            app:progressView_radius="20dp"
                             app:setLabel="@{String.valueOf(viewModel.stats[1].base_stat)}"
-                            app:setProgress="@{viewModel.stats[1].base_stat}"
-                            app:progressView_radius="20dp" />
+                            app:setProgress="@{viewModel.stats[1].base_stat}" />
 
                     </LinearLayout>
 
@@ -319,13 +316,12 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/attack_linear">
 
-                        <TextView
-                            android:layout_width="60dp"
+                        <ImageView
+                            android:layout_width="30dp"
                             android:layout_height="match_parent"
-                            android:layout_marginEnd="5dp"
-                            android:gravity="start|center"
-                            android:text="DEF"
-                            style="@style/textview_style"/>
+                            android:layout_gravity="start|center"
+                            android:layout_marginEnd="35dp"
+                            android:src="@drawable/shield_icon" />
 
                         <com.skydoves.progressview.ProgressView
                             android:id="@+id/defProgress"
@@ -333,16 +329,16 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             app:progressView_autoAnimate="true"
-                            app:progressView_colorBackground="@android:color/darker_gray"
+                            app:progressView_colorBackground="@color/pogressView_background"
                             app:progressView_colorProgress="@color/stat_def"
                             app:progressView_labelColorInner="@color/black"
                             app:progressView_labelColorOuter="@color/white"
                             app:progressView_labelSize="15sp"
                             app:progressView_labelSpace="10dp"
                             app:progressView_max="250"
+                            app:progressView_radius="20dp"
                             app:setLabel="@{String.valueOf(viewModel.stats[2].base_stat)}"
-                            app:setProgress="@{viewModel.stats[2].base_stat}"
-                            app:progressView_radius="20dp" />
+                            app:setProgress="@{viewModel.stats[2].base_stat}" />
 
                     </LinearLayout>
 
@@ -356,13 +352,18 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/def_linear">
 
-                        <TextView
-                            android:layout_width="60dp"
+                        <ImageView
+                            android:layout_width="15dp"
                             android:layout_height="match_parent"
-                            android:layout_marginEnd="5dp"
-                            android:gravity="start|center"
-                            android:text="SP ATK"
-                            style="@style/textview_style"/>
+                            android:layout_gravity="start|center"
+                            android:src="@drawable/special_stat_icon" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="start|center"
+                            android:layout_marginEnd="20dp"
+                            android:src="@drawable/swords_icon" />
 
                         <com.skydoves.progressview.ProgressView
                             android:id="@+id/spAtkProgress"
@@ -370,16 +371,16 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             app:progressView_autoAnimate="true"
-                            app:progressView_colorBackground="@android:color/darker_gray"
+                            app:progressView_colorBackground="@color/pogressView_background"
                             app:progressView_colorProgress="@color/stat_spatk"
                             app:progressView_labelColorInner="@color/black"
                             app:progressView_labelColorOuter="@color/white"
                             app:progressView_labelSize="15sp"
                             app:progressView_labelSpace="10dp"
                             app:progressView_max="250"
+                            app:progressView_radius="20dp"
                             app:setLabel="@{String.valueOf(viewModel.stats[3].base_stat)}"
-                            app:setProgress="@{viewModel.stats[3].base_stat}"
-                            app:progressView_radius="20dp" />
+                            app:setProgress="@{viewModel.stats[3].base_stat}" />
 
                     </LinearLayout>
 
@@ -393,13 +394,18 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/spattack_linear">
 
-                        <TextView
-                            android:layout_width="60dp"
+                        <ImageView
+                            android:layout_width="15dp"
                             android:layout_height="match_parent"
-                            android:layout_marginEnd="5dp"
-                            android:gravity="start|center"
-                            android:text="SP DEF"
-                            style="@style/textview_style"/>
+                            android:layout_gravity="start|center"
+                            android:src="@drawable/special_stat_icon" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="start|center"
+                            android:layout_marginEnd="20dp"
+                            android:src="@drawable/shield_icon" />
 
                         <com.skydoves.progressview.ProgressView
                             android:id="@+id/spDefProgress"
@@ -407,16 +413,16 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             app:progressView_autoAnimate="true"
-                            app:progressView_colorBackground="@android:color/darker_gray"
+                            app:progressView_colorBackground="@color/pogressView_background"
                             app:progressView_colorProgress="@color/stat_spdef"
                             app:progressView_labelColorInner="@color/black"
                             app:progressView_labelColorOuter="@color/white"
                             app:progressView_labelSize="15sp"
                             app:progressView_labelSpace="10dp"
                             app:progressView_max="250"
+                            app:progressView_radius="20dp"
                             app:setLabel="@{String.valueOf(viewModel.stats[4].base_stat)}"
-                            app:setProgress="@{viewModel.stats[4].base_stat}"
-                            app:progressView_radius="20dp" />
+                            app:setProgress="@{viewModel.stats[4].base_stat}" />
 
                     </LinearLayout>
 
@@ -430,13 +436,12 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/spdef_linear">
 
-                        <TextView
-                            android:layout_width="60dp"
+                        <ImageView
+                            android:layout_width="30dp"
                             android:layout_height="match_parent"
-                            android:layout_marginEnd="5dp"
-                            android:gravity="start|center"
-                            android:text="SPD"
-                            style="@style/textview_style"/>
+                            android:layout_gravity="start|center"
+                            android:layout_marginEnd="35dp"
+                            android:src="@drawable/speed_icon" />
 
                         <com.skydoves.progressview.ProgressView
                             android:id="@+id/speedProgress"
@@ -444,16 +449,16 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             app:progressView_autoAnimate="true"
-                            app:progressView_colorBackground="@android:color/darker_gray"
+                            app:progressView_colorBackground="@color/pogressView_background"
                             app:progressView_colorProgress="@color/stat_spd"
                             app:progressView_labelColorInner="@color/black"
                             app:progressView_labelColorOuter="@color/white"
                             app:progressView_labelSize="15sp"
                             app:progressView_labelSpace="10dp"
                             app:progressView_max="250"
+                            app:progressView_radius="20dp"
                             app:setLabel="@{String.valueOf(viewModel.stats[5].base_stat)}"
-                            app:setProgress="@{viewModel.stats[5].base_stat}"
-                            app:progressView_radius="20dp" />
+                            app:setProgress="@{viewModel.stats[5].base_stat}" />
 
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>

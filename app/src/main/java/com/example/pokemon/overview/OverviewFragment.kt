@@ -40,9 +40,10 @@ class OverviewFragment : Fragment() {
         val manager = GridLayoutManager(activity, 3)
         binding.pokemonGrid.layoutManager = manager
 
-        viewModel.navigateToSelectedPokemon.observe(this, Observer{
-            if(null != it){
-                findNavController().navigate(OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(it, it.name))
+        viewModel.navigateToSelectedPokemon.observe(viewLifecycleOwner, Observer{ pokemon ->
+            if(null != pokemon){
+                val name = pokemon.name.replaceFirstChar { it.uppercase() }
+                findNavController().navigate(OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(pokemon, name))
                 viewModel.displayPokemonDetailsCompleted()
             }
         })
