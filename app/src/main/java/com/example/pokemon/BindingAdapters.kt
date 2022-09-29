@@ -1,35 +1,22 @@
 package com.example.pokemon
 
-import android.content.ContentResolver
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.graphics.ImageDecoder
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
-import android.os.Build
-import android.provider.MediaStore
-import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.graphics.drawable.toBitmap
 import androidx.core.net.toUri
 import androidx.core.widget.NestedScrollView
 import androidx.databinding.BindingAdapter
 import androidx.palette.graphics.Palette
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.target.CustomViewTarget
-import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
 import com.example.pokemon.network.Pokemon
 import com.example.pokemon.overview.PokemonGridAdapter
@@ -65,7 +52,7 @@ fun pageBackgroundColor(scrollView: NestedScrollView, imgUrl: String?) {
                 Palette.from(resource).generate() { palette ->
                     palette?.let { palette ->
                         val intColor = palette.lightVibrantSwatch?.rgb?:0
-                        var gd: GradientDrawable = GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, intArrayOf(intColor, Color.rgb(255,255,255)))
+                        var gd = GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, intArrayOf(intColor, Color.rgb(255,255,255)))
                         scrollView.background = gd
                     }
                 }
@@ -123,4 +110,21 @@ fun ProgressView.setProgress(int: Int){
 @BindingAdapter("app:setLabel")
 fun ProgressView.setLabel(string: String){
     labelText = string
+}
+
+@BindingAdapter("marsApiStatus")
+fun bindStatus(statusImageView: ImageView, status: PokemonApiStatus?) {
+    when (status) {
+        PokemonApiStatus.LOADING -> {
+            statusImageView.visibility = View.VISIBLE
+            statusImageView.setImageResource(R.drawable.loading_animation)
+        }
+        PokemonApiStatus.ERROR -> {
+            statusImageView.visibility = View.VISIBLE
+            statusImageView.setImageResource(R.drawable.ic_connection_error)
+        }
+        PokemonApiStatus.DONE -> {
+            statusImageView.visibility = View.GONE
+        }
+    }
 }

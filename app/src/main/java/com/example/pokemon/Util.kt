@@ -1,5 +1,9 @@
 package com.example.pokemon
 
+enum class PokemonApiStatus{
+    LOADING, ERROR, DONE
+}
+
 
 fun convertHectogramaToKilograma(weight: Int): Double {
     return weight / 10.0
